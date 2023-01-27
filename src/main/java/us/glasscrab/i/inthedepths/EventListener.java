@@ -22,15 +22,18 @@ public class EventListener implements Listener {
     private final Manager manager;
     private final int jackpot = 66;
     private final int chance = 250;
+    private final String message = ChatColor.AQUA + "Crystal set into tool!";
+    private ArrayList<String> itemLore = new ArrayList<>();
 
     public EventListener(Manager manager) {
         this.manager = manager;
+        itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
     }
     @EventHandler
     public void crystalCraft(PlayerSwapHandItemsEvent e){
         if(e.getMainHandItem() != null &&
                 e.getOffHandItem() != null &&
-                manager.isUpgradeableItem(e.getOffHandItem().getType()) &&
+                manager.isUpgradeable(e.getOffHandItem().getType()) &&
                 e.getMainHandItem().getItemMeta() != null &&
                 e.getMainHandItem().getItemMeta().hasCustomModelData() &&
                 e.getMainHandItem().getItemMeta().getCustomModelData() == 1){
@@ -42,64 +45,66 @@ public class EventListener implements Listener {
             if(manager.isNetheriteTool(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.DIG_SPEED)){
                 if(meta.getEnchantLevel(Enchantment.DIG_SPEED) < 6){
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
+
                     meta.addEnchant(Enchantment.DIG_SPEED,6, true);
-                    ArrayList<String> itemLore = new ArrayList<String>();
-                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
+
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
+
                     e.setMainHandItem(netheriteItem);
                     e.setOffHandItem(crystal);
-                    String message = ChatColor.AQUA + "Crystal set into item!";
+
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
 
+                    return;
                 }
-                else{
-                    String message = ChatColor.RED + "This item already has a crystal inset!";
-                    e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                    e.setCancelled(true);
-                }
-            } else if(manager.isNetheriteArmor(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_ENVIRONMENTAL)){
-                if(meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) < 5){
-                    e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-                    meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL,5, true);
-                    ArrayList<String> itemLore = new ArrayList<String>();
-                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
+            } else if(manager.isNetheriteArmor(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_ENVIRONMENTAL)) {
+                if (meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) < 5) {
+                    e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
+
+                    meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 5, true);
+
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
+
                     e.setMainHandItem(netheriteItem);
                     e.setOffHandItem(crystal);
-                    String message = ChatColor.AQUA + "Crystal set into tool!";
+
+
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                    e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
-                } else{
-                    String message = ChatColor.RED + "This item already has a crystal inset!";
-                    e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                    e.setCancelled(true);
+                    e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1, 1);
+
+                    return;
                 }
-            } else if(manager.isNetheriteSword(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.DAMAGE_ALL)){
-                if(meta.getEnchantLevel(Enchantment.DAMAGE_ALL) < 6){
-                    e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-                    meta.addEnchant(Enchantment.DAMAGE_ALL,6, true);
-                    ArrayList<String> itemLore = new ArrayList<String>();
-                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
+            } else if (manager.isNetheriteSword(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.DAMAGE_ALL)) {
+                if (meta.getEnchantLevel(Enchantment.DAMAGE_ALL) < 6) {
+                    e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
+
+                    meta.addEnchant(Enchantment.DAMAGE_ALL, 6, true);
+
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
+
                     e.setMainHandItem(netheriteItem);
                     e.setOffHandItem(crystal);
-                    String message = ChatColor.AQUA + "Crystal set into tool!";
+
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                    e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
-                } else{
-                    String message = ChatColor.RED + "This item already has a crystal inset!";
-                    e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                    e.setCancelled(true);
+                    e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1, 1);
+
+                    return;
                 }
-            } else{
+            } else {
                 String message = ChatColor.RED + "This item is inert, it cannot accept a crystal!";
                 e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                 e.setCancelled(true);
+
+                return;
             }
+
+            String message = ChatColor.RED + "This item already has a crystal inset!";
+            e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
+            e.setCancelled(true);
         }
     }
 

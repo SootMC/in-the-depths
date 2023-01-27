@@ -13,8 +13,26 @@ import java.util.Set;
 
 public class Manager {
     private static Manager manager;
+    private List<Material> upgradeableItems = new ArrayList<>();
     public Manager() {
         manager = this;
+    }
+
+    public boolean isUpgradeable(Material material) {
+        // Netherite Armor:
+        upgradeableItems.add(Material.NETHERITE_HELMET);
+        upgradeableItems.add(Material.NETHERITE_CHESTPLATE);
+        upgradeableItems.add(Material.NETHERITE_LEGGINGS);
+        upgradeableItems.add(Material.NETHERITE_BOOTS);
+
+        // Netherite Tools:
+        upgradeableItems.add(Material.NETHERITE_PICKAXE);
+        upgradeableItems.add(Material.NETHERITE_AXE);
+        upgradeableItems.add(Material.NETHERITE_SHOVEL);
+        upgradeableItems.add(Material.NETHERITE_HOE);
+        upgradeableItems.add(Material.NETHERITE_SWORD);
+
+        return upgradeableItems.contains(material);
     }
 
     public boolean isNetheriteArmor (Material material){
@@ -35,23 +53,9 @@ public class Manager {
         return netheriteToolList.contains(material);
     }
 
-    public boolean isUpgradeableItem (Material material){
-        Set<Material> upgradeableItemList= new HashSet<>();
-        upgradeableItemList.add(Material.NETHERITE_PICKAXE);
-        upgradeableItemList.add(Material.NETHERITE_AXE);
-        upgradeableItemList.add(Material.NETHERITE_SHOVEL);
-        upgradeableItemList.add(Material.NETHERITE_HOE);
-        upgradeableItemList.add(Material.NETHERITE_HELMET);
-        upgradeableItemList.add(Material.NETHERITE_CHESTPLATE);
-        upgradeableItemList.add(Material.NETHERITE_LEGGINGS);
-        upgradeableItemList.add(Material.NETHERITE_BOOTS);
-        upgradeableItemList.add(Material.NETHERITE_SWORD);
-        return upgradeableItemList.contains(material);
-    }
-
     public boolean isNetheriteSword (Material material){
         Set<Material> netheriteSwordList = new HashSet<>();
-        netheriteSwordList.add(Material.NETHERITE_SWORD);
+
         return netheriteSwordList.contains(material);
     }
 
