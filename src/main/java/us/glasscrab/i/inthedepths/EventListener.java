@@ -29,6 +29,7 @@ public class EventListener implements Listener {
         this.manager = manager;
         itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
     }
+
     @EventHandler
     public void crystalCraft(PlayerSwapHandItemsEvent e){
         if(e.getMainHandItem() != null &&

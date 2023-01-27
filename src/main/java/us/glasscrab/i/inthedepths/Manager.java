@@ -54,20 +54,23 @@ public class Manager {
     }
 
     public boolean isNetheriteSword (Material material){
-        Set<Material> netheriteSwordList = new HashSet<>();
-
-        return netheriteSwordList.contains(material);
+        return material == Material.NETHERITE_SWORD;
     }
 
     public void giveCrystal(ItemStack item, Item droppedItem){
         List<String> lore = new ArrayList<>();
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("§bDepth Crystal");
+
+        meta.setDisplayName(ChatColor.AQUA + "Depth Crystal");
         lore.add(ChatColor.GRAY + "A shimmering jewel that can be inset into netherite items.");
         meta.setLore(lore);
+
         lore.clear();
+
         meta.setCustomModelData(1);
+
         item.setItemMeta(meta);
+
         droppedItem.getWorld().dropItem(droppedItem.getLocation(), item);
     }
 
