@@ -3,6 +3,7 @@ package us.glasscrab.i.inthedepths;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Container;
@@ -43,18 +44,18 @@ public class EventListener implements Listener {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
                     meta.addEnchant(Enchantment.DIG_SPEED,6, true);
                     ArrayList<String> itemLore = new ArrayList<String>();
-                    itemLore.add("§b♢§7Depth Crystal§b♢");
+                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
                     e.setMainHandItem(netheriteItem);
                     e.setOffHandItem(crystal);
-                    String message = "§bCrystal set into item!";
+                    String message = ChatColor.AQUA + "Crystal set into item!";
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
 
                 }
                 else{
-                    String message = "§cThis item already has a crystal inset!";
+                    String message = ChatColor.RED + "This item already has a crystal inset!";
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.setCancelled(true);
                 }
@@ -63,16 +64,16 @@ public class EventListener implements Listener {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
                     meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL,5, true);
                     ArrayList<String> itemLore = new ArrayList<String>();
-                    itemLore.add("§b♢§7Depth Crystal§b♢");
+                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
                     e.setMainHandItem(netheriteItem);
                     e.setOffHandItem(crystal);
-                    String message = "§bCrystal set into tool!";
+                    String message = ChatColor.AQUA + "Crystal set into tool!";
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
                 } else{
-                    String message = "§cThis item already has a crystal inset!";
+                    String message = ChatColor.RED + "This item already has a crystal inset!";
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.setCancelled(true);
                 }
@@ -81,21 +82,21 @@ public class EventListener implements Listener {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
                     meta.addEnchant(Enchantment.DAMAGE_ALL,6, true);
                     ArrayList<String> itemLore = new ArrayList<String>();
-                    itemLore.add("§b♢§7Depth Crystal§b♢");
+                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
                     e.setMainHandItem(netheriteItem);
                     e.setOffHandItem(crystal);
-                    String message = "§bCrystal set into tool!";
+                    String message = ChatColor.AQUA + "Crystal set into tool!";
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
                 } else{
-                    String message = "§cThis item already has a crystal inset!";
+                    String message = ChatColor.RED + "This item already has a crystal inset!";
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.setCancelled(true);
                 }
             } else{
-                String message = "§cThis item is inert, it cannot accept a crystal!";
+                String message = ChatColor.RED + "This item is inert, it cannot accept a crystal!";
                 e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                 e.setCancelled(true);
             }
@@ -111,7 +112,7 @@ public class EventListener implements Listener {
                 if (rand == jackpot) {
                     ItemStack item = new ItemStack(Material.ECHO_SHARD, 1);
                     manager.giveCrystal(item, droppedItem);
-                    Bukkit.broadcastMessage("§3§l"+e.getPlayer().getName()+"§r unearthed a §bDepth Crystal!");
+                    Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Depth Crystal!");
                 }
             }
         }

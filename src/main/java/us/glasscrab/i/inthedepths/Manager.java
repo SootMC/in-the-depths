@@ -1,5 +1,6 @@
 package us.glasscrab.i.inthedepths;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
@@ -58,7 +59,7 @@ public class Manager {
         List<String> lore = new ArrayList<>();
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("§bDepth Crystal");
-        lore.add("§7A shimmering jewel that can be inset into netherite items.");
+        lore.add(ChatColor.GRAY + "A shimmering jewel that can be inset into netherite items.");
         meta.setLore(lore);
         lore.clear();
         meta.setCustomModelData(1);
