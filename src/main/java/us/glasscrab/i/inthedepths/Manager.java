@@ -57,8 +57,13 @@ public class Manager {
         return material == Material.NETHERITE_SWORD;
     }
 
-    public void giveCrystal(ItemStack item, Item droppedItem){
+    public void dropCrystal(Item droppedItem){
+        droppedItem.getWorld().dropItem(droppedItem.getLocation(), this.makeCrystal());
+    }
+
+    public ItemStack makeCrystal() {
         List<String> lore = new ArrayList<>();
+        ItemStack item = new ItemStack(Material.ECHO_SHARD, 1);
         ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(ChatColor.AQUA + "Depth Crystal");
@@ -71,7 +76,7 @@ public class Manager {
 
         item.setItemMeta(meta);
 
-        droppedItem.getWorld().dropItem(droppedItem.getLocation(), item);
+        return item;
     }
 
     public static Manager getManager() {
