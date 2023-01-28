@@ -58,10 +58,10 @@ public class Manager {
     }
 
     public void dropCrystal(Item droppedItem){
-        droppedItem.getWorld().dropItem(droppedItem.getLocation(), this.makeCrystal());
+        droppedItem.getWorld().dropItem(droppedItem.getLocation(), this.makeOpal());
     }
 
-    public ItemStack makeCrystal() {
+    public ItemStack makeOpal() {
         List<String> lore = new ArrayList<>();
         ItemStack item = new ItemStack(Material.ECHO_SHARD, 1);
         ItemMeta meta = item.getItemMeta();

@@ -6,11 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class GiveCrystalCommand implements CommandExecutor {
+public class GiveOpalCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(args.length != 1) {
-            sender.sendMessage("Usage: /givecrystal <player>");
+            sender.sendMessage("Usage: /giveopal <player>");
             return true;
         }
 
@@ -22,9 +22,9 @@ public class GiveCrystalCommand implements CommandExecutor {
             return true;
         }
 
-        player.getInventory().addItem(Manager.getManager().makeCrystal());
+        player.getInventory().addItem(Manager.getManager().makeOpal());
 
-        sender.sendMessage("Gave " + playerName + " a crystal!");
+        sender.sendMessage("Gave " + playerName + " a Charged Opal!");
         return true;
     }
 }

@@ -22,12 +22,12 @@ public class EventListener implements Listener {
     private final Manager manager;
     private final int jackpot = 66;
     private final int chance = 250;
-    private final String message = ChatColor.AQUA + "Crystal set into tool!";
+    private final String message = ChatColor.AQUA + "Opal inset into tool!";
     private ArrayList<String> itemLore = new ArrayList<>();
 
     public EventListener(Manager manager) {
         this.manager = manager;
-        itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Depth Crystal" + ChatColor.AQUA + "♢");
+        itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
     }
 
     @EventHandler
@@ -96,14 +96,14 @@ public class EventListener implements Listener {
                     return;
                 }
             } else {
-                String message = ChatColor.RED + "This item is inert, it cannot accept a crystal!";
+                String message = ChatColor.RED + "This item is inert, it cannot accept an opal!";
                 e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                 e.setCancelled(true);
 
                 return;
             }
 
-            String message = ChatColor.RED + "This item already has a crystal inset!";
+            String message = ChatColor.RED + "This item already has an opal inset!";
             e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
             e.setCancelled(true);
         }
@@ -117,7 +117,7 @@ public class EventListener implements Listener {
                 int rand = (int) (Math.random() * chance) + 1;
                 if (rand == jackpot) {
                     manager.dropCrystal(droppedItem);
-                    Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Depth Crystal!");
+                    Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Charged Opal!");
                 }
             }
         }
