@@ -7,7 +7,7 @@ public final class Inthedepths extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new EventListener(new Manager()), this);
-        this.getCommand("givecrystal").setExecutor(new GiveCrystalCommand());
+        this.getCommand("giveopal").setExecutor(new GiveOpalCommand());
         this.getLogger().info("InTheDepths has been enabled!");
     }
 
