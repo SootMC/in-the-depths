@@ -116,8 +116,7 @@ public class EventListener implements Listener {
             if (droppedItem.getItemStack().getType().equals(Material.DIAMOND) && !(e.getBlockState() instanceof Container)) {
                 int rand = (int) (Math.random() * chance) + 1;
                 if (rand == jackpot) {
-                    ItemStack item = new ItemStack(Material.ECHO_SHARD, 1);
-                    manager.giveCrystal(item, droppedItem);
+                    manager.dropCrystal(droppedItem);
                     Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Depth Crystal!");
                 }
             }
