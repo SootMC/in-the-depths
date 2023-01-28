@@ -7,7 +7,7 @@ description: Special items rarely spawning in certain locations of the world.
 website: i.glasscrab.us
 commands:
   giveopal:
-    description: Gives a crystal to the player.
+    description: Gives a Charged Opal to the player.
     usage: /giveopal <player>
     permission: inthedepths.giveopal
     default: op

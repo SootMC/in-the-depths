@@ -57,7 +57,7 @@ public class Manager {
         return material == Material.NETHERITE_SWORD;
     }
 
-    public void dropCrystal(Item droppedItem){
+    public void dropOpal(Item droppedItem){
         droppedItem.getWorld().dropItem(droppedItem.getLocation(), this.makeOpal());
     }
 

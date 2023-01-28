@@ -31,7 +31,7 @@ public class EventListener implements Listener {
     }
 
     @EventHandler
-    public void crystalCraft(PlayerSwapHandItemsEvent e){
+    public void opalCraft(PlayerSwapHandItemsEvent e){
         if(e.getMainHandItem() != null &&
                 e.getOffHandItem() != null &&
                 manager.isUpgradeable(e.getOffHandItem().getType()) &&
@@ -41,7 +41,7 @@ public class EventListener implements Listener {
 
             ItemStack netheriteItem = e.getOffHandItem();
             ItemMeta meta = netheriteItem.getItemMeta();
-            ItemStack crystal = e.getMainHandItem();
+            ItemStack opal = e.getMainHandItem();
 
             if(manager.isNetheriteTool(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.DIG_SPEED)){
                 if(meta.getEnchantLevel(Enchantment.DIG_SPEED) < 6){
@@ -53,7 +53,7 @@ public class EventListener implements Listener {
                     netheriteItem.setItemMeta(meta);
 
                     e.setMainHandItem(netheriteItem);
-                    e.setOffHandItem(crystal);
+                    e.setOffHandItem(opal);
 
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
@@ -70,7 +70,7 @@ public class EventListener implements Listener {
                     netheriteItem.setItemMeta(meta);
 
                     e.setMainHandItem(netheriteItem);
-                    e.setOffHandItem(crystal);
+                    e.setOffHandItem(opal);
 
 
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
@@ -88,7 +88,7 @@ public class EventListener implements Listener {
                     netheriteItem.setItemMeta(meta);
 
                     e.setMainHandItem(netheriteItem);
-                    e.setOffHandItem(crystal);
+                    e.setOffHandItem(opal);
 
                     e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                     e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1, 1);
@@ -116,7 +116,7 @@ public class EventListener implements Listener {
             if (droppedItem.getItemStack().getType().equals(Material.DIAMOND) && !(e.getBlockState() instanceof Container)) {
                 int rand = (int) (Math.random() * chance) + 1;
                 if (rand == jackpot) {
-                    manager.dropCrystal(droppedItem);
+                    manager.dropOpal(droppedItem);
                     Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Charged Opal!");
                 }
             }
