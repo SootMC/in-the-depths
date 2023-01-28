@@ -66,7 +66,7 @@ public class Manager {
         ItemStack item = new ItemStack(Material.ECHO_SHARD, 1);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(ChatColor.AQUA + "Charged Opal goomba 3");
+        meta.setDisplayName(ChatColor.AQUA + "Charged Opal");
         lore.add(ChatColor.GRAY + "A shimmering jewel that can be inset into netherite items.");
         meta.setLore(lore);
 
