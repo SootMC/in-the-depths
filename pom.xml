@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>us.glasscrab.i</groupId>
-    <artifactId>inthedepths</artifactId>
+    <artifactId>inthedepths-OPSMP</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
