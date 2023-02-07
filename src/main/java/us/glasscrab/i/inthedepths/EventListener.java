@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 public class EventListener implements Listener {
     private final Manager manager;
-    private final int jackpot = 66;
-    private final int chance = 250;
+    private final int jackpot = 40;
+    private final int chance = 50;
     private final String message = ChatColor.AQUA + "Opal inset into tool!";
     private ArrayList<String> itemLore = new ArrayList<>();
 
@@ -44,10 +44,10 @@ public class EventListener implements Listener {
             ItemStack opal = e.getMainHandItem();
 
             if(manager.isNetheriteTool(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.DIG_SPEED)){
-                if(meta.getEnchantLevel(Enchantment.DIG_SPEED) < 6){
+                if(meta.getEnchantLevel(Enchantment.DIG_SPEED) < 10){
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
 
-                    meta.addEnchant(Enchantment.DIG_SPEED,6, true);
+                    meta.addEnchant(Enchantment.DIG_SPEED,10, true);
 
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
@@ -61,10 +61,10 @@ public class EventListener implements Listener {
                     return;
                 }
             } else if(manager.isNetheriteArmor(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_ENVIRONMENTAL)) {
-                if (meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) < 5) {
+                if (meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) < 10) {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
 
-                    meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 5, true);
+                    meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 10, true);
 
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
@@ -79,10 +79,10 @@ public class EventListener implements Listener {
                     return;
                 }
             } else if (manager.isNetheriteSword(e.getOffHandItem().getType()) && e.getOffHandItem().getEnchantments().containsKey(Enchantment.DAMAGE_ALL)) {
-                if (meta.getEnchantLevel(Enchantment.DAMAGE_ALL) < 6) {
+                if (meta.getEnchantLevel(Enchantment.DAMAGE_ALL) < 10) {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
 
-                    meta.addEnchant(Enchantment.DAMAGE_ALL, 6, true);
+                    meta.addEnchant(Enchantment.DAMAGE_ALL, 10, true);
 
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
