@@ -47,7 +47,7 @@ public class EventListener implements Listener {
                 if(meta.getEnchantLevel(Enchantment.DIG_SPEED) < 10){
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
 
-                    meta.addEnchant(Enchantment.DIG_SPEED,10, true);
+                    meta.addEnchant(Enchantment.DIG_SPEED,meta.getEnchantLevel(Enchantment.DIG_SPEED) + 1, true);
 
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
@@ -64,7 +64,7 @@ public class EventListener implements Listener {
                 if (meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) < 10) {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
 
-                    meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 10, true);
+                    meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL,meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) + 1, true);
 
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
@@ -82,7 +82,7 @@ public class EventListener implements Listener {
                 if (meta.getEnchantLevel(Enchantment.DAMAGE_ALL) < 10) {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
 
-                    meta.addEnchant(Enchantment.DAMAGE_ALL, 10, true);
+                    meta.addEnchant(Enchantment.DAMAGE_ALL,meta.getEnchantLevel(Enchantment.DAMAGE_ALL) + 1, true);
 
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
