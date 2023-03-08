@@ -36,6 +36,7 @@ public class EventListener implements Listener {
         if(e.getMainHandItem() != null &&
                 e.getOffHandItem() != null &&
                 manager.isUpgradeable(e.getOffHandItem().getType()) &&
+                e.getMainHandItem().getType().equals(Material.ECHO_SHARD) &&
                 e.getMainHandItem().getItemMeta() != null &&
                 e.getMainHandItem().getItemMeta().hasCustomModelData() &&
                 e.getMainHandItem().getItemMeta().getCustomModelData() == 1){
