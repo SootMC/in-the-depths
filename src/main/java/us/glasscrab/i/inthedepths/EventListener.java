@@ -17,17 +17,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventListener implements Listener {
     private final Manager manager;
     private final int jackpot = 66;
     private final int chance = 250;
     private final String message = ChatColor.AQUA + "Opal inset into tool!";
-    private ArrayList<String> itemLore = new ArrayList<>();
+
 
     public EventListener(Manager manager) {
         this.manager = manager;
-        itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
+
     }
 
     @EventHandler
@@ -48,7 +49,14 @@ public class EventListener implements Listener {
                     e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
 
                     meta.addEnchant(Enchantment.DIG_SPEED,6, true);
-
+                    List<String> itemLore;
+                    if(meta.getLore() == null){
+                        itemLore = new ArrayList<>();
+                    }
+                    else{
+                        itemLore = meta.getLore();
+                    }
+                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
 
@@ -66,6 +74,14 @@ public class EventListener implements Listener {
 
                     meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 5, true);
 
+                    List<String> itemLore;
+                    if(meta.getLore() == null){
+                        itemLore = new ArrayList<>();
+                    }
+                    else{
+                        itemLore = meta.getLore();
+                    }
+                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
 
@@ -84,6 +100,14 @@ public class EventListener implements Listener {
 
                     meta.addEnchant(Enchantment.DAMAGE_ALL, 6, true);
 
+                    List<String> itemLore;
+                    if(meta.getLore() == null){
+                        itemLore = new ArrayList<>();
+                    }
+                    else{
+                        itemLore = meta.getLore();
+                    }
+                    itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
                     meta.setLore(itemLore);
                     netheriteItem.setItemMeta(meta);
 
