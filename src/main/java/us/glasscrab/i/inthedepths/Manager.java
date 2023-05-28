@@ -79,6 +79,19 @@ public class Manager {
         return item;
     }
 
+    public void updateNetheriteItem(ItemMeta meta, ItemStack netheriteItem){
+        List<String> itemLore;
+        if(meta.getLore() == null){
+            itemLore = new ArrayList<>();
+        }
+        else{
+            itemLore = meta.getLore();
+        }
+        itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
+        meta.setLore(itemLore);
+        netheriteItem.setItemMeta(meta);
+    }
+
     public static Manager getManager() {
         return manager;
     }
