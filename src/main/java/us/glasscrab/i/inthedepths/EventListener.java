@@ -23,7 +23,6 @@ public class EventListener implements Listener {
     private final Manager manager;
     private final int jackpot = 66;
     private final int chance = 250;
-    private final String message = ChatColor.AQUA + "Opal inset into tool!";
 
 
     public EventListener(Manager manager) {

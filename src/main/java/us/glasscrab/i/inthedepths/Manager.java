@@ -2,14 +2,13 @@ package us.glasscrab.i.inthedepths;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Manager {
     private static Manager manager;
@@ -35,26 +34,44 @@ public class Manager {
         return upgradeableItems.contains(material);
     }
 
-    public boolean isNetheriteArmor (Material material){
-        Set<Material> netheriteArmorList = new HashSet<>();
-        netheriteArmorList.add(Material.NETHERITE_HELMET);
-        netheriteArmorList.add(Material.NETHERITE_CHESTPLATE);
-        netheriteArmorList.add(Material.NETHERITE_LEGGINGS);
-        netheriteArmorList.add(Material.NETHERITE_BOOTS);
-        return netheriteArmorList.contains(material);
+    public Set<Enchantment> getUpgradeableToolEnchantmentList(){
+        Set<Enchantment> upgradeableToolEnchantmentList = new HashSet<>();
+        upgradeableToolEnchantmentList.add(Enchantment.DAMAGE_ALL);
+        upgradeableToolEnchantmentList.add(Enchantment.DAMAGE_UNDEAD);
+        upgradeableToolEnchantmentList.add(Enchantment.DAMAGE_ARTHROPODS);
+        upgradeableToolEnchantmentList.add(Enchantment.DIG_SPEED);
+        return upgradeableToolEnchantmentList;
     }
 
-    public boolean isNetheriteTool (Material material){
-        Set<Material> netheriteToolList= new HashSet<>();
-        netheriteToolList.add(Material.NETHERITE_PICKAXE);
-        netheriteToolList.add(Material.NETHERITE_AXE);
-        netheriteToolList.add(Material.NETHERITE_SHOVEL);
-        netheriteToolList.add(Material.NETHERITE_HOE);
-        return netheriteToolList.contains(material);
+    public boolean containsUpgradeableToolEnchant (Map<Enchantment,Integer> enchantments){
+        Set<Enchantment> upgradeableToolEnchantmentList = getUpgradeableToolEnchantmentList();
+        boolean containsValidToolEnchantment = false;
+        for(Enchantment e : enchantments.keySet()){
+            if(upgradeableToolEnchantmentList.contains(e)){
+                containsValidToolEnchantment = true;
+            }
+        }
+        return containsValidToolEnchantment;
     }
 
-    public boolean isNetheriteSword (Material material){
-        return material == Material.NETHERITE_SWORD;
+    public Set<Enchantment> getUpgradeableArmorEnchantmentList(){
+        Set<Enchantment> upgradeableArmorEnchantmentList = new HashSet<>();
+        upgradeableArmorEnchantmentList.add(Enchantment.PROTECTION_ENVIRONMENTAL);
+        upgradeableArmorEnchantmentList.add(Enchantment.PROTECTION_EXPLOSIONS);
+        upgradeableArmorEnchantmentList.add(Enchantment.PROTECTION_FIRE);
+        upgradeableArmorEnchantmentList.add(Enchantment.PROTECTION_PROJECTILE);
+        return upgradeableArmorEnchantmentList;
+    }
+
+    public boolean containsUpgradeableArmorEnchant(Map<Enchantment,Integer> enchantments){
+        Set<Enchantment> upgradeableArmorEnchantmentList = getUpgradeableArmorEnchantmentList();
+        boolean containsValidArmorEnchantment = false;
+        for(Enchantment e : enchantments.keySet()){
+            if(upgradeableArmorEnchantmentList.contains(e)){
+                containsValidArmorEnchantment = true;
+            }
+        }
+        return containsValidArmorEnchantment;
     }
 
     public void dropOpal(Item droppedItem){
