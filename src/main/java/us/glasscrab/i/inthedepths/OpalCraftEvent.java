@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +18,6 @@ import java.util.List;
 
 public class OpalCraftEvent implements Listener {
     private final Manager manager;
-    private final String message = ChatColor.AQUA + "Opal inset into tool!";
 
     public OpalCraftEvent(Manager manager) {
         this.manager = manager;
@@ -37,62 +37,37 @@ public class OpalCraftEvent implements Listener {
         ItemMeta meta = netheriteItem.getItemMeta();
         ItemStack opal = e.getMainHandItem();
 
-        if(e.getOffHandItem().getItemMeta().hasLore()){
-            if(e.getOffHandItem().getItemMeta().getLore().contains(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢")){
-                String message = ChatColor.RED + "This item already has an opal inset!";
-                e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                e.setCancelled(true);
-                return;
+        if(manager.containsUpgradeableToolEnchant(e.getOffHandItem().getEnchantments())){
+            for(Enchantment ench : e.getOffHandItem().getEnchantments().keySet()){
+                if(manager.getUpgradeableToolEnchantmentList().contains(ench)){
+                    if(meta.getEnchantLevel(ench) == 6){
+                        String message = ChatColor.RED + "This item already has an opal inset!";
+                        e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
+                        e.setCancelled(true);
+                        return;
+                    }
+                    e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
+                    meta.addEnchant(ench, 6, true);
+                }
             }
         }
 
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.DIG_SPEED)){
-            if(meta.getEnchantLevel(Enchantment.DIG_SPEED) == 6) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.DIG_SPEED,6, true);
+        else if(manager.containsUpgradeableArmorEnchant(e.getOffHandItem().getEnchantments())){
+            for(Enchantment ench : e.getOffHandItem().getEnchantments().keySet()){
+                if(manager.getUpgradeableArmorEnchantmentList().contains(ench)){
+                    if(meta.getEnchantLevel(ench) == 5){
+                        String message = ChatColor.RED + "This item already has an opal inset!";
+                        e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
+                        e.setCancelled(true);
+                        return;
+                    }
+                    e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() - 1);
+                    meta.addEnchant(ench, 5, true);
+                }
+            }
         }
 
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_ENVIRONMENTAL)){
-            if(meta.getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) == 5) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL,5, true);
-        }
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_PROJECTILE)){
-            if(meta.getEnchantLevel(Enchantment.PROTECTION_PROJECTILE) == 5) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.PROTECTION_PROJECTILE,5, true);
-        }
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_EXPLOSIONS)){
-            if(meta.getEnchantLevel(Enchantment.PROTECTION_EXPLOSIONS) == 5) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS,5, true);
-        }
-
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.PROTECTION_FIRE)){
-            if(meta.getEnchantLevel(Enchantment.PROTECTION_FIRE) == 5) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.PROTECTION_FIRE,5, true);
-        }
-
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.DAMAGE_ALL)){
-            if(meta.getEnchantLevel(Enchantment.DAMAGE_ALL) == 6) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.DAMAGE_ALL,6, true);
-        }
-
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.DAMAGE_UNDEAD)){
-            if(meta.getEnchantLevel(Enchantment.DAMAGE_UNDEAD) == 6) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.DAMAGE_UNDEAD,6, true);
-        }
-
-        else if(e.getOffHandItem().getEnchantments().containsKey(Enchantment.DAMAGE_ARTHROPODS)){
-            if(meta.getEnchantLevel(Enchantment.DAMAGE_ARTHROPODS) == 6) return;
-            e.getMainHandItem().setAmount(e.getMainHandItem().getAmount() -1);
-            meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS,6, true);
-        }
-
-        else{
+        else if(e.getOffHandItem().getEnchantments().size() == 0 || !manager.containsUpgradeableToolEnchant(e.getOffHandItem().getEnchantments()) || !manager.containsUpgradeableArmorEnchant(e.getOffHandItem().getEnchantments())){
             String message = ChatColor.RED + "This item is inert, it cannot accept an opal!";
             e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
             e.setCancelled(true);
@@ -106,6 +81,7 @@ public class OpalCraftEvent implements Listener {
         else{
             itemLore = meta.getLore();
         }
+
         itemLore.add(ChatColor.AQUA + "♢" + ChatColor.GRAY + "Charged Opal" + ChatColor.AQUA + "♢");
         meta.setLore(itemLore);
         netheriteItem.setItemMeta(meta);
@@ -113,8 +89,10 @@ public class OpalCraftEvent implements Listener {
         e.setMainHandItem(netheriteItem);
         e.setOffHandItem(opal);
 
-        e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-        e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, 1,1);
+        e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.AQUA + "Opal inset into tool!"));
+
+        //VV this only works if you're playing on 1.19.4 VV
+        e.getPlayer().playSound(e.getPlayer(), Sound.BLOCK_AMETHYST_BLOCK_FALL, SoundCategory.PLAYERS, 1,1);
 
     }
 }
