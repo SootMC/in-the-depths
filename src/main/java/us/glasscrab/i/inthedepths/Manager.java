@@ -46,7 +46,7 @@ public class Manager {
         Set<Enchantment> upgradeableToolEnchantmentList = getUpgradeableToolEnchantmentList();
         for(Enchantment e : enchantments.keySet()){
             if(upgradeableToolEnchantmentList.contains(e)){
-                return true
+                return true;
             }
         }
         return false;
