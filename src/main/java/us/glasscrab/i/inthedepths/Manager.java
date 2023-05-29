@@ -50,7 +50,7 @@ public class Manager {
                 return true
             }
         }
-        return containsValidToolEnchantment;
+        return false;
     }
 
     public Set<Enchantment> getUpgradeableArmorEnchantmentList(){
