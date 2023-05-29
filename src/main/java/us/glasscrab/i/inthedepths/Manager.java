@@ -44,7 +44,6 @@ public class Manager {
 
     public boolean containsUpgradeableToolEnchant (Map<Enchantment,Integer> enchantments){
         Set<Enchantment> upgradeableToolEnchantmentList = getUpgradeableToolEnchantmentList();
-        boolean containsValidToolEnchantment = false;
         for(Enchantment e : enchantments.keySet()){
             if(upgradeableToolEnchantmentList.contains(e)){
                 return true
