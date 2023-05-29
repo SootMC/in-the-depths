@@ -69,7 +69,7 @@ public class Manager {
                 return true;
             }
         }
-        return containsValidArmorEnchantment;
+        return false;
     }
 
     public void dropOpal(Item droppedItem){
