@@ -66,7 +66,7 @@ public class Manager {
         Set<Enchantment> upgradeableArmorEnchantmentList = getUpgradeableArmorEnchantmentList();
         for(Enchantment e : enchantments.keySet()){
             if(upgradeableArmorEnchantmentList.contains(e)){
-                containsValidArmorEnchantment = true;
+                return true;
             }
         }
         return containsValidArmorEnchantment;
