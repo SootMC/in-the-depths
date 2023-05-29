@@ -64,7 +64,6 @@ public class Manager {
 
     public boolean containsUpgradeableArmorEnchant(Map<Enchantment,Integer> enchantments){
         Set<Enchantment> upgradeableArmorEnchantmentList = getUpgradeableArmorEnchantmentList();
-        boolean containsValidArmorEnchantment = false;
         for(Enchantment e : enchantments.keySet()){
             if(upgradeableArmorEnchantmentList.contains(e)){
                 containsValidArmorEnchantment = true;
