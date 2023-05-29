@@ -11,7 +11,7 @@ import java.util.*;
 
 public class Manager {
     private static Manager manager;
-    private List<Material> upgradeableItems = new ArrayList<>();
+    private final List<Material> upgradeableItems = new ArrayList<>();
     public Manager() {
         manager = this;
     }

@@ -11,9 +11,6 @@ import org.bukkit.event.block.BlockDropItemEvent;
 
 public class EventListener implements Listener {
     private final Manager manager;
-    private final int jackpot = 66;
-    private final int chance = 250;
-
 
     public EventListener(Manager manager) {
         this.manager = manager;
@@ -21,15 +18,21 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void blockEvent(BlockDropItemEvent e){
-        if (e.getItems().size() > 0) {
-            Item droppedItem = e.getItems().get(0);
-            if (droppedItem.getItemStack().getType().equals(Material.DIAMOND) && !(e.getBlockState() instanceof Container)) {
-                int rand = (int) (Math.random() * chance) + 1;
-                if (rand == jackpot) {
-                    manager.dropOpal(droppedItem);
-                    Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Charged Opal!");
-                }
-            }
+        if (!(e.getItems().size() > 0)) {
+            return;
+        }
+
+        Item droppedItem = e.getItems().get(0);
+        if(!droppedItem.getItemStack().getType().equals(Material.DIAMOND)) return;
+        if(e.getBlockState() instanceof Container) return;
+
+        int chance = 250;
+        int rand = (int) (Math.random() * chance) + 1;
+        int jackpot = 66;
+
+        if (rand == jackpot) {
+            manager.dropOpal(droppedItem);
+            Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + e.getPlayer().getName()+ChatColor.RESET + " unearthed a " + ChatColor.AQUA + "Charged Opal!");
         }
     }
 }
