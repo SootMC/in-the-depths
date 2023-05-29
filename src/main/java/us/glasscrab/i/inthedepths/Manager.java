@@ -47,7 +47,7 @@ public class Manager {
         boolean containsValidToolEnchantment = false;
         for(Enchantment e : enchantments.keySet()){
             if(upgradeableToolEnchantmentList.contains(e)){
-                containsValidToolEnchantment = true;
+                return true
             }
         }
         return containsValidToolEnchantment;
