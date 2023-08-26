@@ -5,6 +5,7 @@ public class ChanceTest {
     private static int highestRoll = 0;
     private static int timesRolled = 0;
     private static int timesJackpotHit = 0;
+
     @Test
     public void testChance() {
         while (true) {
@@ -25,7 +26,7 @@ public class ChanceTest {
                 timesJackpotHit++;
             }
 
-            if(timesRolled > 1000000) {
+            if(timesRolled == 1000000) {
                 break;
             }
         }
