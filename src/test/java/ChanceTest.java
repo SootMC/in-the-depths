@@ -8,14 +8,14 @@ public class ChanceTest {
 
     @Test
     public void testChance() {
-        while (true) {
+        do {
             int chance = 250;
             int rand = (int) (Math.random() * chance) + 1;
             int jackpot = 66;
 
             timesRolled++;
 
-            assert(rand >= 1 && rand <= chance);
+            assert (rand >= 1 && rand <= chance);
 
             if (rand > highestRoll) {
                 highestRoll = rand;
@@ -26,10 +26,7 @@ public class ChanceTest {
                 timesJackpotHit++;
             }
 
-            if(timesRolled == 1000000) {
-                break;
-            }
-        }
+        } while (timesRolled != 3000);
     }
 
     @AfterAll
@@ -37,5 +34,6 @@ public class ChanceTest {
         System.out.println("Highest roll: " + highestRoll);
         System.out.println("Times rolled: " + timesRolled);
         System.out.println("Times jackpot hit: " + timesJackpotHit);
+        System.out.println("Average of " + (timesRolled / timesJackpotHit) + " rolls per jackpot hit.");
     }
 }
